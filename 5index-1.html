@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilo Buenos Aires</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gradiente: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            --violeta: #8b5cf6;
+            --celeste: #0ea5e9;
+            --oscuro: #111827;
+            --gris-claro: #f3f4f6;
+            --blanco: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--gris-claro);
+            margin: 0;
+            padding-bottom: 80px;
+            color: var(--oscuro);
+        }
+
+        .header {
+            background: var(--blanco);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .logo-circulo {
+            width: 60px;
+            height: 60px;
+            background: var(--gradiente);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .stat-card {
+            background: var(--blanco);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--violeta);
+            display: block;
+        }
+
+        .menu-principal {
+            padding: 0 20px;
+        }
+
+        .menu-item {
+            background: var(--oscuro);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+        }
+
+        .menu-item.white {
+            background: var(--blanco);
+            color: var(--oscuro);
+        }
+
+        .seccion {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .seccion.activa { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-form {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        /* Estilo especial para la barra de búsqueda */
+        .buscador-contenedor {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .buscador-contenedor i {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+            color: #9ca3af;
+        }
+
+        .buscador-input {
+            padding-left: 45px;
+            border: 2px solid var(--violeta);
+            border-radius: 15px;
+            font-size: 16px;
+        }
+
+        .btn-add {
+            background: var(--gradiente);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .nav-inferior {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 20px;
+        }
+
+        .nav-btn.active { color: var(--violeta); }
+
+        .btn-central {
+            background: var(--gradiente);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -40px;
+            box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* Detalles de la ficha */
+        .ficha-detalle {
+            text-align: left;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .ficha-detalle hr {
+            border: 0;
+            border-top: 1px solid #f3f4f6;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="inicio" class="seccion activa">
+        <div class="header">
+            <div class="logo-circulo"><i class="fas fa-cut"></i></div>
+            <h1 style="margin:0; font-size: 20px;">ESTILO BUENOS AIRES</h1>
+            <small style="color: #6b7280;">Professional Hair Studio</small>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <span id="countClientas" class="stat-number">0</span>
+                <small>CLIENTAS</small>
+            </div>
+            <div class="stat-card">
+                <span id="countServicios" class="stat-number">0</span>
+                <small>SERVICIOS</small>
+            </div>
+        </div>
+
+        <div class="menu-principal">
+            <div class="menu-item" onclick="mostrarSeccion('fichas')">
+                <div>
+                    <h3 style="margin:0">Gestionar Fichas</h3>
+                    <small>Historial y fórmulas de color</small>
+                </div>
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="menu-item white" onclick="mostrarSeccion('precios')">
+                <div>
+                    <h3 style="margin:0">Lista de Precios</h3>
+                    <small>Configurar mis servicios</small>
+                </div>
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="fichas" class="seccion">
+        <h2>Fichas de Clientas</h2>
+        
+        <div class="buscador-contenedor">
+            <i class="fas fa-search"></i>
+            <input type="text" id="buscadorClientas" class="buscador-input" placeholder="Buscar por nombre..." onkeyup="buscarClienta()">
+        </div>
+
+        <div class="card-form">
+            <h3 style="margin-top:0; color:var(--violeta);">Nueva Ficha</h3>
+            <input type="text" id="cliNombre" placeholder="Nombre completo">
+            <input type="tel" id="cliTelefono" placeholder="Teléfono (Ej. 11-1234-5678)">
+            
+            <label style="font-size: 12px; color: #6b7280; margin-left: 5px;">Cumpleaños:</label>
+            <input type="date" id="cliCumple" title="Cumpleaños">
+            
+            <textarea id="cliHistorial" rows="4" placeholder="Historial de citas y fórmulas de color (Ej: 15/10 - Raíces 7.1 con 20vol)"></textarea>
+            
+            <label style="font-size: 12px; color: #6b7280; margin-left: 5px;">Próximo turno:</label>
+            <input type="date" id="cliProxima" title="Próxima cita">
+            
+            <button class="btn-add" onclick="guardarClienta()">Guardar Ficha</button>
+        </div>
+
+        <div id="listaFichas"></div>
+    </div>
+
+    <div id="precios" class="seccion">
+        <h2>Lista de Precios</h2>
+        <div class="card-form">
+            <input type="text" id="preNombre" placeholder="Nombre del servicio">
+            <input type="number" id="preCosto" placeholder="Precio $">
+            <button class="btn-add" onclick="guardarPrecio()">Agregar a la lista</button>
+        </div>
+        <div id="listaPrecios"></div>
+    </div>
+
+    <nav class="nav-inferior">
+        <button class="nav-btn active" id="btnNavInicio" onclick="mostrarSeccion('inicio')"><i class="fas fa-home"></i></button>
+        <div class="btn-central" onclick="mostrarSeccion('fichas')"><i class="fas fa-plus"></i></div>
+        <button class="nav-btn" id="btnNavFichas" onclick="mostrarSeccion('fichas')"><i class="fas fa-user-friends"></i></button>
+    </nav>
+
+    <script>
+        // Cargar datos guardados en el celular
+        let clientas = JSON.parse(localStorage.getItem('clientas')) || [];
+        let servicios = JSON.parse(localStorage.getItem('servicios')) || [];
+
+        // Función para cambiar de pantalla
+        function mostrarSeccion(id) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+            document.getElementById(id).classList.add('activa');
+            
+            // Colorear el botón del menú inferior
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            if(id === 'inicio') document.getElementById('btnNavInicio').classList.add('active');
+            if(id === 'fichas') document.getElementById('btnNavFichas').classList.add('active');
+
+            actualizarInterfaz();
+        }
+
+        // Función para guardar una nueva clienta
+        function guardarClienta() {
+            const nombre = document.getElementById('cliNombre').value;
+            if(!nombre) {
+                alert("Por favor, ingresa al menos el nombre de la clienta.");
+                return;
+            }
+
+            const nueva = {
+                nombre: nombre,
+                telefono: document.getElementById('cliTelefono').value,
+                cumple: document.getElementById('cliCumple').value,
+                historial: document.getElementById('cliHistorial').value,
+                proxima: document.getElementById('cliProxima').value
+            };
+            
+            // Insertar al principio de la lista
+            clientas.unshift(nueva); 
+            localStorage.setItem('clientas', JSON.stringify(clientas));
+            
+            // Limpiar formulario
+            document.getElementById('cliNombre').value = '';
+            document.getElementById('cliTelefono').value = '';
+            document.getElementById('cliCumple').value = '';
+            document.getElementById('cliHistorial').value = '';
+            document.getElementById('cliProxima').value = '';
+
+            alert("Ficha guardada con éxito");
+            actualizarInterfaz();
+        }
+
+        // Función para el buscador
+        function buscarClienta() {
+            const textoBusqueda = document.getElementById('buscadorClientas').value.toLowerCase();
+            const clientasFiltradas = clientas.filter(c => c.nombre.toLowerCase().includes(textoBusqueda));
+            renderizarFichas(clientasFiltradas);
+        }
+
+        // Función para mostrar las fichas en la pantalla
+        function renderizarFichas(listaParaMostrar) {
+            const divFichas = document.getElementById('listaFichas');
+            
+            if(listaParaMostrar.length === 0) {
+                divFichas.innerHTML = '<p style="text-align:center; color:#9ca3af;">No se encontraron clientas.</p>';
+                return;
+            }
+
+            divFichas.innerHTML = listaParaMostrar.map(c => {
+                // Dar formato a saltos de línea en el historial
+                const historialFormateado = c.historial ? c.historial.replace(/\n/g, '<br>') : 'Sin registros';
+                
+                return `
+                <div class="stat-card ficha-detalle">
+                    <strong style="font-size: 1.2em; color: var(--violeta);">${c.nombre}</strong><br>
+                    <small>📱 Tel: <a href="tel:${c.telefono}" style="color:var(--celeste); text-decoration:none;">${c.telefono || '-'}</a></small><br>
+                    <small>🎂 Cumple: ${c.cumple || '-'}</small>
+                    <hr>
+                    <small style="color: var(--oscuro);"><strong>📝 Historial y Fórmulas:</strong><br>${historialFormateado}</small>
+                    <hr>
+                    <small style="color:var(--celeste); font-size: 1.1em;"><strong>📅 Próximo turno:</strong> ${c.proxima || 'No agendado'}</small>
+                </div>
+            `}).join('');
+        }
+
+        // Función para guardar precio
+        function guardarPrecio() {
+            const nombre = document.getElementById('preNombre').value;
+            const costo = document.getElementById('preCosto').value;
+            
+            if(!nombre || !costo) return;
+
+            const nuevo = { nombre, costo };
+            servicios.push(nuevo);
+            localStorage.setItem('servicios', JSON.stringify(servicios));
+            
+            document.getElementById('preNombre').value = '';
+            document.getElementById('preCosto').value = '';
+            
+            actualizarInterfaz();
+        }
+
+        // Función para actualizar toda la pantalla
+        function actualizarInterfaz() {
+            document.getElementById('countClientas').innerText = clientas.length;
+            document.getElementById('countServicios').innerText = servicios.length;
+
+            // Renderizar listas completas si el buscador está vacío
+            document.getElementById('buscadorClientas').value = '';
+            renderizarFichas(clientas);
+
+            // Renderizar Precios
+            const divPrecios = document.getElementById('listaPrecios');
+            divPrecios.innerHTML = servicios.map(s => `
+                <div class="stat-card" style="display:flex; justify-content:space-between; margin-bottom:10px; padding:20px;">
+                    <span style="font-weight:bold;">${s.nombre}</span>
+                    <strong style="color:var(--violeta);">$${s.costo}</strong>
+                </div>
+            `).join('');
+        }
+
+        // Inicializar la app
+        actualizarInterfaz();
+    </script>
+</body>
+</html>
